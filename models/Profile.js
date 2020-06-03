@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Profile = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
-  age: {},
+  age: { type: Number },
   team: { type: String },
   position: { type: String },
 });
