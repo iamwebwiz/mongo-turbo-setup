@@ -9,7 +9,7 @@ const config = {
   static: 'public',
   logging: true,
   db: {
-    url: 'mongodb://localhost/mongo-turbo-proj',
+    url: 'mongodb://localhost/mongo-turbo',
     type: 'mongo',
     onError: (err) => {
       console.log('DB connection failed!');

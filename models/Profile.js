@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const Profile = new mongoose.Schema({
-  firstName: { type: String },
-  lastName: { type: String },
-  age: { type: Number },
-  team: { type: String },
-  position: { type: String },
+  firstName: { type: String, default: '', trim: true },
+  lastName: { type: String, default: '', trim: true },
+  age: { type: Number, default: 0 },
+  team: { type: String, default: '', trim: true },
+  position: { type: String, default: '', trim: true },
 });
 
 module.exports = mongoose.model('Profile', Profile);
