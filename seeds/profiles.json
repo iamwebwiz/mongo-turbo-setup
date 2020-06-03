@@ -1,0 +1,21 @@
+{
+    "firstName": "Ezekiel",
+    "lastName": "Oladejo",
+    "age": 23,
+    "team": "Regallabs",
+    "position": "Founder/CEO"
+}
+{
+    "firstName": "Steve",
+    "lastName": "Rogers",
+    "age": 35,
+    "team": "Avengers",
+    "position": "Captain/Team Lead"
+}
+{
+    "firstName": "Natasha",
+    "lastName": "Romanoff",
+    "age": 32,
+    "team": "Avengers",
+    "position": "Black Widow"
+}
