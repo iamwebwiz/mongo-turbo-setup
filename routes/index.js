@@ -6,11 +6,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/add-team', (req, res) => {
-    res.render('add-team')
+    res.render('add-team', {title: 'Add Team'})
 })
 
 router.get('/add-profile', (req, res) => {
-    res.render('add-profile')
+    res.render('add-profile', {title: 'Add Profile'})
 })
 
 module.exports = router
