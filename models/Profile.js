@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const Profile = new mongoose.Schema({
-  firstName: { type: String, default: '', trim: true },
-  lastName: { type: String, default: '', trim: true },
-  age: { type: Number, default: 0 },
-  team: { type: String, default: '', trim: true },
-  position: { type: String, default: '', trim: true },
-});
+    firstName: {type: String, trim: true, required: true},
+    lastName: {type: String, trim: true, required: true},
+    age: {type: Number, default: 0, required: true},
+    team: {type: String, trim: true, required: true},
+    position: {type: String, trim: true, required: true},
+})
 
-module.exports = mongoose.model('Profile', Profile);
+module.exports = mongoose.model('Profile', Profile)
