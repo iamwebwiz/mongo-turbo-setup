@@ -4,52 +4,59 @@ const router = express.Router()
 const Profile = require('../models/Profile')
 
 router.get('/profiles', (req, res) => {
-  let filters = req.query
+    let filters = req.query
 
-  if (req.query.age != null) {
-    filters = {
-      age: { $gte: filters.age },
+    if (req.query.age != null) {
+        filters = {
+            age: {$gte: filters.age},
+        }
     }
-  }
 
-  Profile.find(filters)
+    Profile.find(filters)
     .then((profiles) => {
-      res.json({
-        confirmation: 'success',
-        data: profiles,
-      })
+        res.json({
+            confirmation: 'success',
+            data: profiles,
+        })
     })
     .catch((err) => {
-      res.json({
-        confirmation: 'fail',
-        message: err.message,
-      })
+        res.json({
+            confirmation: 'failure',
+            message: err.message,
+        })
     })
 })
 
 router.get('/profiles/:id', (req, res) => {
-  const id = req.params.id
+    const id = req.params.id
 
-  Profile.findById(id)
+    Profile.findById(id)
     .then((profile) => {
-      res.json({
-        confirmation: 'success',
-        data: profile,
-      })
+        res.json({
+            confirmation: 'success',
+            data: profile,
+        })
     })
     .catch(() => {
-      res.json({
-        confirmation: 'fail',
-        data: `Unable to locate profile with id: [${id}]`,
-      })
+        res.json({
+            confirmation: 'failure',
+            data: `Unable to locate profile with id: [${id}]`,
+        })
     })
 })
 
 router.post('/profiles', (req, res) => {
-  res.json({
-    confirmation: 'success',
-    data: req.body,
-  })
+    Profile.create(req.body).then(profile => {
+        res.json({
+            confirmation: 'success',
+            profile: profile,
+        })
+    }).catch(err => {
+        res.json({
+            confirmation: 'failure',
+            message: err.message,
+        })
+    })
 })
 
 module.exports = router
