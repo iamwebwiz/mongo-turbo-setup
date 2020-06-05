@@ -45,4 +45,11 @@ router.get('/profiles/:id', (req, res) => {
     })
 })
 
+router.post('/profiles', (req, res) => {
+  res.json({
+    confirmation: 'success',
+    data: req.body,
+  })
+})
+
 module.exports = router
