@@ -1,23 +1,48 @@
-// Full Documentation - https://docs.turbo360.co
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const Profile = require('../models/Profile');
+const Profile = require('../models/Profile')
 
 router.get('/profiles', (req, res) => {
-  Profile.find({ team: 'Regallabs' })
+  let filters = req.query
+
+  if (req.query.age != null) {
+    filters = {
+      age: { $gte: filters.age },
+    }
+  }
+
+  Profile.find(filters)
     .then((profiles) => {
       res.json({
         confirmation: 'success',
         data: profiles,
-      });
+      })
     })
     .catch((err) => {
       res.json({
         confirmation: 'fail',
         message: err.message,
-      });
-    });
-});
+      })
+    })
+})
 
-module.exports = router;
+router.get('/profiles/:id', (req, res) => {
+  const id = req.params.id
+
+  Profile.findById(id)
+    .then((profile) => {
+      res.json({
+        confirmation: 'success',
+        data: profile,
+      })
+    })
+    .catch((err) => {
+      res.json({
+        confirmation: 'fail',
+        data: err.message,
+      })
+    })
+})
+
+module.exports = router
