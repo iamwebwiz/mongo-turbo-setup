@@ -134,4 +134,22 @@ router.post('/teams', (req, res) => {
     })
 })
 
+router.put('/teams/:id/update', (req, res) => {
+  const teamId = req.params.id
+
+  Team.findByIdAndUpdate(teamId, req.body, {new: true})
+    .then(team => {
+      res.json({
+        confirmation: 'success',
+        data: team,
+      })
+    })
+    .catch(err => {
+      res.json({
+        confirmation: 'failure',
+        message: err.message,
+      })
+    })
+})
+
 module.exports = router
