@@ -63,6 +63,24 @@ router.post('/profiles', (req, res) => {
     })
 })
 
+router.put('/profiles/:id/update', (req, res) => {
+  const profileId = req.params.id
+
+  Profile.findByIdAndUpdate(profileId, req.body, {new: true})
+    .then(profile => {
+      res.json({
+        confirmation: 'success',
+        data: profile,
+      })
+    })
+    .catch(err => {
+      res.json({
+        confirmation: 'failure',
+        message: err.message,
+      })
+    })
+})
+
 // Teams-specific endpoints
 router.get('/teams', (req, res) => {
   let filters = req.query
