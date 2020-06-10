@@ -81,6 +81,24 @@ router.put('/profiles/:id/update', (req, res) => {
     });
 });
 
+router.delete('/profiles/:id/remove', (req, res) => {
+  const profileId = req.params.id;
+
+  Profile.findByIdAndRemove(profileId)
+    .then(data => {
+      res.json({
+        confirmation: 'success',
+        data: `Profile ${profileId} removed successfully.`,
+      });
+    })
+    .catch(err => {
+      res.json({
+        confirmation: 'failure',
+        message: err.message,
+      });
+    });
+});
+
 // Teams-specific endpoints
 router.get('/teams', (req, res) => {
   let filters = req.query;
