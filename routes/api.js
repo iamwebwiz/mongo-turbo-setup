@@ -85,10 +85,10 @@ router.delete('/profiles/:id/remove', (req, res) => {
   const profileId = req.params.id;
 
   Profile.findByIdAndRemove(profileId)
-    .then(data => {
+    .then(response => {
       res.json({
         confirmation: 'success',
-        data: `Profile ${profileId} removed successfully.`,
+        message: `Profile ${profileId} removed successfully.`,
       });
     })
     .catch(err => {
@@ -160,6 +160,24 @@ router.put('/teams/:id/update', (req, res) => {
       res.json({
         confirmation: 'success',
         data: team,
+      });
+    })
+    .catch(err => {
+      res.json({
+        confirmation: 'failure',
+        message: err.message,
+      });
+    });
+});
+
+router.delete('/teams/:id/remove', (req, res) => {
+  const teamId = req.params.id;
+
+  Team.findByIdAndRemove(teamId)
+    .then(response => {
+      res.json({
+        confirmation: 'success',
+        message: `Team ${teamId} removed successfully.`,
       });
     })
     .catch(err => {
